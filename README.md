@@ -9,6 +9,7 @@ The special feature of this bot is **It can scans all the post from the forum an
 If no relevant memories found the bot still try to give general answers.
 
 **Note: The bot doesn't reply back any messages. It only writes a message on new thread creation.**
+
 ## Commands
 | Command | Description |
 |---------|-------------|
@@ -21,6 +22,13 @@ The bot answers if relevant memories found.
 
 The bot answers if no relevant memories found.
 ![alt text](img/1.png)
+
+## Tool used
+- py-cord
+- chromadb
+- pydantic_ai
+- google-genai
+- sqlite3
 
 
 **Made by Renerfia!**
