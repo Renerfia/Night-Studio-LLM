@@ -57,6 +57,16 @@ async def on_thread_create(thread):
             await thread.send(response)
         except Exception as e:
             print(f"An error occured:{e}")
+
+@bot.event
+async def on_application_command_error(ctx, error):
+    if isinstance(error, commands.MissingPermissions):
+        await ctx.respond("You don't have permission to do that.", ephemeral=True)
+    elif isinstance(error, discord.Forbidden):
+        await ctx.respond("I don't have permission to do that.", ephemeral=True)
+    else:
+        await ctx.respond("Something went wrong.", ephemeral=True)
+        print(f"Unhandled error: {error}")
     
 
 bot.run(BOT_TOKEN)

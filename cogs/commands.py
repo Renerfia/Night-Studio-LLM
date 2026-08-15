@@ -80,6 +80,8 @@ class CommandsCog(commands.Cog):
                 f"[{i}/{len(all_threads)}] Thread '{thread.name}': Collected {len(messages)} messages"
             )
 
+            print(f"Raw messages:\n{messages}")
+
             # Join messages into a single text block for the LLM
             full_text = "\n".join(messages)
             print(f"The post's message block is:\n{full_text}")
@@ -87,7 +89,8 @@ class CommandsCog(commands.Cog):
 
             print(f"Adding thread {thread.id} to ChromaDB")
             add_text_to_chromadb(str(thread.id), summarization)
-
+            print("done!")
+            
             # Small delay to respect Discord API rate limits
             await asyncio.sleep(0.3)
 
