@@ -40,4 +40,10 @@ def retrieve_memory(query,n=5):
     memories = collection.query(query_embeddings=query_embedding,n_results=n)
 
     return memories["documents"][0]
-    
+
+def check_id(post_id:str)->bool:
+    """Checks if similar id exists in the chromadb or not."""
+
+    result = collection.get(ids=[post_id])
+
+    return len(result["ids"]) > 0 

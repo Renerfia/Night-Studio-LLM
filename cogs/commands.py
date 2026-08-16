@@ -2,7 +2,7 @@ from discord.ext import commands
 import discord
 from database.sql import set_the_forum_channel_to_db, guild_verification, get_forum_channel
 from cogs.ai_chat import get_summerization
-from vector_database.vector_db import add_text_to_chromadb
+from vector_database.vector_db import add_text_to_chromadb, check_id
 import asyncio
 
 class CommandsCog(commands.Cog):
@@ -68,6 +68,12 @@ class CommandsCog(commands.Cog):
 
         # 6. Process Messages
         for i, thread in enumerate(all_threads, start=1):
+            post_exists_in_db = check_id(str(thread.id))
+
+            #checks if the thread already in the vector db or not
+            if post_exists_in_db == False:
+                continue
+            
             messages = []
             async for message in thread.history(limit=None, oldest_first=True):
                 if message.content:  # Skip empty system/attachment messages
@@ -87,10 +93,19 @@ class CommandsCog(commands.Cog):
             print(f"The post's message block is:\n{full_text}")
             summarization = await get_summerization(full_text)
 
+            #checking if summarization is empty or not.
+            if summarization is None:
+                print(f"Skipping {thread.id} because the summarization model couldn't summarise it")
+                continue
+
             print(f"Adding thread {thread.id} to ChromaDB")
             add_text_to_chromadb(str(thread.id), summarization)
             print("done!")
+<<<<<<< HEAD
+
+=======
             
+>>>>>>> refs/remotes/origin/main
             # Small delay to respect Discord API rate limits
             await asyncio.sleep(0.3)
 
