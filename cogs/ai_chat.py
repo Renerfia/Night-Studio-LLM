@@ -37,7 +37,7 @@ async def get_response(query, memories) -> str:
         return "Something went wrong while processing that."
     
 summary_agent = Agent(
-    model="groq:llama-3.1-8b-instant",
+    model="groq:openai/gpt-oss-120b",
     instructions="You are a summary agent who will extract question and solution from conversations. And summarize them into short readable description"
 )
 
@@ -53,7 +53,7 @@ async def get_summerization(text) -> str:
 
 
 query_agent = Agent(
-    model="groq:llama-3.3-70b-versatile",
+    model="groq:openai/gpt-oss-20b",
     instructions="""You are a technical search optimizer.
 Analyze this Discord forum post and summarize the core technical issue into a single, clean search sentence.
 Strip away greetings, filler words, emotional chatter, and unnecessary logs.""",

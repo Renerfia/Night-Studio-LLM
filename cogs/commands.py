@@ -71,7 +71,7 @@ class CommandsCog(commands.Cog):
             post_exists_in_db = check_id(str(thread.id))
 
             #checks if the thread already in the vector db or not
-            if post_exists_in_db == False:
+            if post_exists_in_db == True:
                 continue
             
             messages = []
@@ -101,11 +101,6 @@ class CommandsCog(commands.Cog):
             print(f"Adding thread {thread.id} to ChromaDB")
             add_text_to_chromadb(str(thread.id), summarization)
             print("done!")
-<<<<<<< HEAD
-
-=======
-            
->>>>>>> refs/remotes/origin/main
             # Small delay to respect Discord API rate limits
             await asyncio.sleep(0.3)
 

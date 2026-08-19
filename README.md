@@ -26,6 +26,7 @@ pip install -r requirements.txt
 ```
 BOT_TOKEN=your_discord_bot_token_here
 GEMINI_API_KEY=your_google_gemini_api_key_here
+GROQ_API_KEY=your_groq_api_key_here
 ```
 
 - **Run the bot**:
